@@ -185,14 +185,27 @@
 .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; background: transparent; border: 0; cursor: pointer; }
 .hamburger span { width: 22px; height: 2px; background: var(--navy); border-radius: 2px; }
 
+/* Base: panel hidden on large screens. Do not put display:none after the mobile breakpoint or it overrides the open menu. */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 76px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-bottom: 1px solid var(--grey-light);
+  box-shadow: var(--shadow-md);
+  padding: 16px 24px;
+  z-index: 49;
+}
+.mobile-nav a { display: block; padding: 12px 8px; color: var(--navy); font-weight: 500; border-bottom: 1px solid var(--grey-light); }
+.mobile-nav a:last-of-type { border-bottom: 0; }
+
 @media (max-width: 768px) {
   .nav-links, .header-cta { display: none; }
   .hamburger { display: flex; }
   .mobile-nav { display: block; }
 }
-.mobile-nav { display: none; position: fixed; top: 76px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--grey-light); box-shadow: var(--shadow-md); padding: 16px 24px; z-index: 49; }
-.mobile-nav a { display: block; padding: 12px 8px; color: var(--navy); font-weight: 500; border-bottom: 1px solid var(--grey-light); }
-.mobile-nav a:last-of-type { border-bottom: 0; }
 
 /* Hero */
 .hero {
