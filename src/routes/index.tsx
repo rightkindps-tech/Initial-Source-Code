@@ -426,6 +426,8 @@ function Process() {
   ];
   return (
     <section id="process" className="process">
+      <div className="process-glow process-glow-tr" aria-hidden="true" />
+      <div className="process-glow process-glow-bl" aria-hidden="true" />
       <div className="container-x">
         <div className="section-head fade-up">
           <span className="section-label">Our process</span>
