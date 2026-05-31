@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type LucideIcon } from "react";
 import {
   ArrowRight, Users, Search, Briefcase, Compass, Check, Mail, Phone, MapPin,
   Linkedin, Twitter, Facebook, Instagram, ChevronUp, Sparkles, X, Handshake, Target,
-  UserCheck, MessageCircle, Shield, TrendingUp
+  UserCheck, MessageCircle, Shield, TrendingUp, Gem, Heart
 } from "lucide-react";
 import heroImg from "@/assets/hero-team.jpg";
 import about1 from "@/assets/about-1.jpg";
@@ -199,28 +199,78 @@ function About() {
 }
 
 function Differentiators() {
-  const items = [
-    "We value quality over quantity",
-    "We believe speed means nothing without the right fit",
-    "We work with honesty, clarity, and accountability",
-    "We focus on long-term business relationships",
-    "We treat every hiring requirement like it matters — because it does",
+  const [active, setActive] = useState(0);
+  const items: { icon: LucideIcon; tag: string; text: string }[] = [
+    { icon: Gem, tag: "Quality first", text: "We value quality over quantity" },
+    { icon: Target, tag: "Right fit", text: "We believe speed means nothing without the right fit" },
+    { icon: Shield, tag: "Transparency", text: "We work with honesty, clarity, and accountability" },
+    { icon: Handshake, tag: "Partnership", text: "We focus on long-term business relationships" },
+    { icon: Heart, tag: "Every role counts", text: "We treat every hiring requirement like it matters — because it does" },
   ];
   return (
     <section id="different" className="different">
-      <div className="different-glow" aria-hidden="true" />
-      <div className="container-x">
+      <div className="different-glow different-glow-tr" aria-hidden="true" />
+      <div className="different-glow different-glow-bl" aria-hidden="true" />
+      <div className="container-x different-layout">
         <div className="section-head fade-up">
           <span className="section-label">What Makes Us Different?</span>
+          <h2 className="section-title">Principles that guide every <em>hire</em>.</h2>
+          <p className="different-intro">
+            Tap a principle to explore how we work differently from typical recruitment agencies.
+          </p>
         </div>
+
+        <div className="diff-nav" role="tablist" aria-label="Our principles">
+          {items.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <button
+                key={item.tag}
+                type="button"
+                role="tab"
+                aria-selected={active === i}
+                className={`diff-nav-pill ${active === i ? "active" : ""}`}
+                onClick={() => setActive(i)}
+              >
+                <span className="diff-nav-ico"><Icon size={16} /></span>
+                {item.tag}
+              </button>
+            );
+          })}
+        </div>
+
         <div className="different-grid">
-          {items.map((item, i) => (
-            <article key={item} className={`diff-card fade-up d${(i % 4) + 1}`}>
-              <span className="diff-num">{String(i + 1).padStart(2, "0")}</span>
-              <p>{item}</p>
-              <span className="diff-accent" aria-hidden="true" />
-            </article>
-          ))}
+          {items.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <article
+                key={item.text}
+                className={`diff-card${active === i ? " diff-card-active" : ""}`}
+                onClick={() => setActive(i)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActive(i);
+                  }
+                }}
+                tabIndex={0}
+              >
+                <div className="diff-card-top">
+                  <span className="diff-icon"><Icon size={22} /></span>
+                  <span className="diff-num">{String(i + 1).padStart(2, "0")}</span>
+                </div>
+                <span className="diff-tag">{item.tag}</span>
+                <p>{item.text}</p>
+                <span className="diff-accent" aria-hidden="true" />
+                <span className="diff-glow" aria-hidden="true" />
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="diff-footer fade-up d2">
+          <Sparkles size={18} aria-hidden="true" />
+          <p>Five principles. One standard — the right hire, every time.</p>
         </div>
       </div>
     </section>
