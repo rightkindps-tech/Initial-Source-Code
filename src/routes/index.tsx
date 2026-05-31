@@ -360,14 +360,18 @@ function Process() {
             From understanding your business to closing the right hire — a clear path at every stage.
           </p>
         </div>
-        <div className="steps">
-          {steps.map((s, i) => (
-            <div key={s.t} className={`step fade-up d${(i % 4) + 1}`}>
-              <div className="circle">{String(i + 1).padStart(2, "0")}</div>
-              <h4>{s.t}</h4>
-              <p>{s.d}</p>
-            </div>
-          ))}
+        <div className="process-timeline-wrap fade-up">
+          <ol className="process-timeline">
+            {steps.map((s, i) => (
+              <li key={s.t} className={`timeline-step fade-up d${(i % 4) + 1}`}>
+                <span className="timeline-node">{String(i + 1).padStart(2, "0")}</span>
+                <article className="timeline-card">
+                  <h4>{s.t}</h4>
+                  <p>{s.d}</p>
+                </article>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     </section>
