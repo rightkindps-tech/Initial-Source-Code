@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   ArrowRight, Users, Search, Briefcase, Compass, Check, Mail, Phone, MapPin,
-  Linkedin, Twitter, Facebook, Instagram, ChevronUp, Sparkles, X, Handshake, Target
+  Linkedin, Twitter, Facebook, Instagram, ChevronUp, Sparkles, X, Handshake, Target,
+  UserCheck, MessageCircle, Shield, TrendingUp
 } from "lucide-react";
 import heroImg from "@/assets/hero-team.jpg";
 import about1 from "@/assets/about-1.jpg";
@@ -255,46 +256,69 @@ function Services() {
 }
 
 function Why() {
-  const reasons = [
-    "Partner-led on every engagement",
-    "Diverse, vetted shortlists in 21 days",
-    "Independent leadership assessment",
-    "Transparent retained fee structure",
-    "12-month placement guarantee",
+  const commitments = [
+    { icon: <UserCheck size={22} />, label: "Every profile we share" },
+    { icon: <MessageCircle size={22} />, label: "Every conversation we have" },
+    { icon: <Briefcase size={22} />, label: "Every role we work on" },
+  ];
+  const values = [
+    { icon: <TrendingUp size={18} />, label: "Effort" },
+    { icon: <Target size={18} />, label: "Understanding" },
+    { icon: <Shield size={18} />, label: "Responsibility" },
   ];
   return (
     <section className="why">
-      <div className="container-x why-grid">
-        <div className="fade-up">
-          <span className="section-label" style={{ color: "var(--teal-light)" }}>Why RightKind</span>
-          <h2 className="section-title">A quieter kind of <em>conviction</em>.</h2>
-          <p className="lead">
-            We don't chase logos or sell volume. We work with a small number of clients each year and
-            measure ourselves on what happens twelve months after the hire — not the day they sign.
+      <div className="why-glow why-glow-tr" aria-hidden="true" />
+      <div className="why-glow why-glow-bl" aria-hidden="true" />
+      <div className="container-x why-layout">
+        <div className="why-head fade-up">
+          <span className="section-label">Why RightKind</span>
+          <h2 className="section-title">
+            Hiring is an <em>investment</em>, not an expense.
+          </h2>
+          <p className="why-intro">
+            Because we understand that hiring is an investment, not an expense.
           </p>
-          <ul className="check-list">
-            {reasons.map((r) => (
-              <li className="check" key={r}><span className="ico"><Check size={14} /></span>{r}</li>
-            ))}
-          </ul>
         </div>
-        <div className="why-visual fade-up d1">
-          <div className="glass-grid">
-            <div className="glass featured">
-              <div className="num">94%</div>
-              <h4>Placed leaders still in role at 24 months</h4>
-              <p>Across 500+ executive placements since 2011 — measured independently every quarter.</p>
-            </div>
-            <div className="glass">
-              <div className="num">21d</div>
-              <h4>Average shortlist time</h4>
-              <p>From kickoff to a calibrated, diverse shortlist of 4–6.</p>
-            </div>
-            <div className="glass">
-              <div className="num">100%</div>
-              <h4>Partner-led engagements</h4>
-              <p>No handoffs. The partner you meet stays for the duration.</p>
-            </div>
+
+        <div className="why-contrast fade-up d1" aria-hidden="true">
+          <span className="why-chip why-chip-dim">Expense</span>
+          <span className="why-contrast-arrow">→</span>
+          <span className="why-chip why-chip-active">Investment</span>
+        </div>
+
+        <div className="why-commitments">
+          {commitments.map((item, i) => (
+            <article key={item.label} className={`why-commit-card fade-up d${(i % 4) + 1}`}>
+              <span className="why-commit-icon">{item.icon}</span>
+              <p>{item.label}</p>
+              <span className="why-commit-accent" aria-hidden="true" />
+            </article>
+          ))}
+        </div>
+
+        <div className="why-values fade-up d2">
+          <span className="why-values-label">Backed by</span>
+          <div className="why-values-row">
+            {values.map((v, i) => (
+              <span key={v.label} className="why-value-pill">
+                <span className="why-value-ico">{v.icon}</span>
+                {v.label}
+                {i < values.length - 1 && <span className="why-value-dot" aria-hidden="true" />}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="why-partner fade-up d3">
+          <div className="why-partner-icon" aria-hidden="true">
+            <Handshake size={28} />
+          </div>
+          <div>
+            <p className="why-partner-lead">More than a recruitment agency</p>
+            <p className="why-partner-text">
+              We aim to become a dependable hiring partner that businesses can grow with.
+            </p>
           </div>
         </div>
       </div>
@@ -406,7 +430,7 @@ function Contact() {
               <div className="ico-tile"><MapPin size={20} /></div>
               <div>
                 <h5>Office</h5>
-                <p>14 Finsbury Square, London EC2A 1AH</p>
+                <p>Rohini, Delhi, India - 110085</p>
               </div>
             </div>
             <div className="contact-row">
