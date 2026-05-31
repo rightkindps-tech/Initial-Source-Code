@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   ArrowRight, Users, Search, Briefcase, Compass, Check, Mail, Phone, MapPin,
-  Linkedin, Twitter, Facebook, Instagram, ChevronUp, Award, ShieldCheck, Heart, Sparkles, Menu, X
+  Linkedin, Twitter, Facebook, Instagram, ChevronUp, Sparkles, X, Handshake, Target
 } from "lucide-react";
 import heroImg from "@/assets/hero-team.jpg";
 import about1 from "@/assets/about-1.jpg";
@@ -90,13 +90,10 @@ function Hero() {
       <div className="container-x hero-grid">
         <div className="fade-up visible">
           <span className="hero-badge"><span className="pulse" /> People-first HR partners</span>
-          <h1>
-            Building teams that <em>thrive</em>,
-            <br />leaders who <em>last</em>.
-          </h1>
+          <h1>The right people make the difference.</h1>
           <p className="lead">
-            We pair rigorous executive search with thoughtful people advisory — so you hire the right
-            kind of leaders, retain the right kind of talent, and grow the right kind of culture.
+            Success begins with the right team behind your business.
+            Right Kind delivers recruitment solutions that bring the right people to the right roles.
           </p>
           <div className="hero-ctas">
             <a href="#contact" className="btn btn-primary">Book a Consultation <ArrowRight size={16} /></a>
@@ -124,20 +121,24 @@ function Hero() {
 
 function Stats() {
   const items = [
-    { v: "500", s: "+", l: "Senior placements" },
-    { v: "120", s: "+", l: "Client partners" },
-    { v: "32", s: " days", l: "Avg. time to hire" },
-    { v: "94", s: "%", l: "Retention at 12 months" },
+    { label: "People", d: "Carefully matched talent for every role.", icon: <Users size={22} /> },
+    { label: "Process", d: "Efficient, transparent, and reliable hiring.", icon: <Compass size={22} /> },
+    { label: "Partnership", d: "Building long-term relationships with clients.", icon: <Handshake size={22} /> },
+    { label: "Results", d: "Focused on quality hires that create impact.", icon: <Target size={22} /> },
   ];
   return (
-    <section className="stats" style={{ padding: "60px 0" }}>
+    <section className="right-pillars" aria-label="Our approach">
       <div className="container-x">
-        <div className="stats-grid">
-          {items.map((s) => (
-            <div key={s.l} className="stat fade-up">
-              <div className="v">{s.v}<sup>{s.s}</sup></div>
-              <div className="l">{s.l}</div>
-            </div>
+        <div className="right-pillars-grid">
+          {items.map((item, i) => (
+            <article key={item.label} className={`right-pillar-card fade-up d${i + 1}`}>
+              <span className="right-pillar-index">{String(i + 1).padStart(2, "0")}</span>
+              <div className="right-pillar-icon">{item.icon}</div>
+              <h3>
+                <span className="right-pillar-accent">Right</span> {item.label}
+              </h3>
+              <p>{item.d}</p>
+            </article>
           ))}
         </div>
       </div>
@@ -150,40 +151,75 @@ function About() {
     <section id="about" className="about">
       <div className="container-x about-grid">
         <div className="about-images fade-up">
-          <img src={about1} alt="Two professionals shaking hands" className="about-img-1" loading="lazy" width={900} height={1100} />
-          <img src={about2} alt="HR consultant smiling" className="about-img-2" loading="lazy" width={700} height={800} />
+          <div className="about-collage">
+            <img src={about1} alt="Two professionals shaking hands" className="about-img-main" loading="lazy" width={900} height={1100} />
+            <img src={about2} alt="HR consultant smiling" className="about-img-sub" loading="lazy" width={700} height={800} />
+            <img src={heroImg} alt="RightKind team in a strategy session" className="about-img-sub" loading="lazy" width={1280} height={960} />
+          </div>
         </div>
         <div className="fade-up d1">
-          <span className="section-label">About RightKind</span>
-          <h2 className="section-title">A people consultancy with <em>conviction</em>.</h2>
-          <p style={{ color: "var(--grey-dark)", marginTop: 18, fontSize: "1.05rem" }}>
-            We were founded on a simple belief: organisations are only as strong as the people inside
-            them. For more than a decade, we've helped boards, founders and HR leaders make calmer,
-            sharper decisions about who joins, who leads, and how they grow.
-          </p>
-          <div className="feature-list">
-            <div className="feature">
-              <div className="feature-icon"><Award size={20} /></div>
-              <div>
-                <h4>Senior, sector-aware partners</h4>
-                <p>Every engagement is led by a partner who has lived the function — not a junior with a script.</p>
-              </div>
-            </div>
-            <div className="feature">
-              <div className="feature-icon"><ShieldCheck size={20} /></div>
-              <div>
-                <h4>Discreet, evidence-based search</h4>
-                <p>Confidential mandates, structured assessments, and a shortlist you can defend in any boardroom.</p>
-              </div>
-            </div>
-            <div className="feature">
-              <div className="feature-icon"><Heart size={20} /></div>
-              <div>
-                <h4>Long after the offer letter</h4>
-                <p>Onboarding, integration coaching and a 12-month placement guarantee on every executive role.</p>
-              </div>
-            </div>
+          <span className="section-label">About Us</span>
+          <h2 className="section-title">
+            We Don&apos;t Just Hire People.
+            <br />
+            We Help Businesses Find the Ones Who <em>Change the Game</em>.
+          </h2>
+          <div className="about-copy">
+            <p>
+              Welcome to RightKind People Solutions — where hiring is not treated like a routine process, but
+              as one of the most important business decisions a company can make.
+            </p>
+            <p>Because the truth is simple:</p>
+            <p className="about-callout">The right people make the difference.</p>
+            <p>
+              A great hire can build teams, improve culture, increase revenue, and move a company forward.
+              A wrong hire costs time, energy, money, and momentum.
+            </p>
+            <p>That&apos;s why we do things differently.</p>
+            <p>
+              We are not here to flood inboxes with random profiles or chase numbers. We focus on
+              understanding businesses deeply — their vision, work culture, growth plans, and expectations —
+              so we can connect them with talent that truly fits.
+            </p>
+            <p>
+              At RightKind People Solutions, we believe recruitment is not about filling vacancies.
+              It&apos;s about building futures, strengthening companies, and creating teams that actually perform.
+            </p>
+            <p>
+              Whether you are a fast-growing startup, an ambitious brand, or an established organization, we
+              bring energy, commitment, professionalism, and people expertise that help you hire with
+              confidence.
+            </p>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Differentiators() {
+  const items = [
+    "We value quality over quantity",
+    "We believe speed means nothing without the right fit",
+    "We work with honesty, clarity, and accountability",
+    "We focus on long-term business relationships",
+    "We treat every hiring requirement like it matters — because it does",
+  ];
+  return (
+    <section id="different" className="different">
+      <div className="different-glow" aria-hidden="true" />
+      <div className="container-x">
+        <div className="section-head fade-up">
+          <span className="section-label">What Makes Us Different?</span>
+        </div>
+        <div className="different-grid">
+          {items.map((item, i) => (
+            <article key={item} className={`diff-card fade-up d${(i % 4) + 1}`}>
+              <span className="diff-num">{String(i + 1).padStart(2, "0")}</span>
+              <p>{item}</p>
+              <span className="diff-accent" aria-hidden="true" />
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -192,25 +228,24 @@ function About() {
 
 function Services() {
   const svc = [
-    { icon: <Search size={24} />, t: "Executive Search", d: "Confidential retained search for C-suite, board and senior leadership across regulated and growth sectors." },
-    { icon: <Users size={24} />, t: "Talent Acquisition", d: "Embedded RPO and project-based hiring for scale-ups and enterprise teams that need quality at speed." },
-    { icon: <Compass size={24} />, t: "People Advisory", d: "Org design, succession planning, leadership assessment and HR transformation guided by senior advisors." },
-    { icon: <Briefcase size={24} />, t: "HR Consultancy", d: "Policy, performance, reward and culture programmes — built to fit the way your organisation actually works." },
+    { icon: <Search size={24} />, t: "Recruitment & Talent Acquisition" },
+    { icon: <Briefcase size={24} />, t: "HR Consulting & Strategic Hiring" },
+    { icon: <Users size={24} />, t: "Leadership & Mid-Level Hiring" },
+    { icon: <Compass size={24} />, t: "Workforce & Team Building Support" },
+    { icon: <Sparkles size={24} />, t: "Employer Branding Assistance" },
+    { icon: <Check size={24} />, t: "Customized HR Solutions" },
   ];
   return (
     <section id="services" style={{ background: "#fff" }}>
       <div className="container-x">
         <div className="section-head fade-up">
-          <span className="section-label">What we do</span>
-          <h2 className="section-title">Services built around <em>people</em>, not pipelines.</h2>
-          <p className="section-sub">Four practice areas, one delivery team — joined-up advice across the entire talent lifecycle.</p>
+          <span className="section-label">What We do</span>
         </div>
         <div className="services-grid">
           {svc.map((s, i) => (
             <div key={s.t} className={`svc-card fade-up d${(i % 4) + 1}`}>
               <div className="svc-icon">{s.icon}</div>
               <h3>{s.t}</h3>
-              <p>{s.d}</p>
             </div>
           ))}
         </div>
@@ -288,68 +323,47 @@ function Industries() {
   );
 }
 
-function Testimonials() {
-  const items = [
-    {
-      q: "RightKind found us a Chief People Officer in eight weeks who had been turning down recruiters for years. The difference was the relationship and the rigour.",
-      n: "Helena Marsh", r: "CEO, Northvale Capital", a: "HM",
-    },
-    {
-      q: "They asked harder questions of us than we asked of the candidates. The hire we made is the strongest leadership decision of the year.",
-      n: "David Okafor", r: "Chair, Meridian Health", a: "DO",
-    },
-    {
-      q: "Calm, senior and uncommonly honest. We've used them for three searches and an HR transformation programme — every one delivered.",
-      n: "Priya Anand", r: "CHRO, Lattice Energy", a: "PA",
-    },
-  ];
-  return (
-    <section id="testimonials" style={{ background: "#fff" }}>
-      <div className="container-x">
-        <div className="section-head fade-up">
-          <span className="section-label">Client voices</span>
-          <h2 className="section-title">Trusted by leaders who <em>don't recommend lightly</em>.</h2>
-        </div>
-        <div className="test-grid">
-          {items.map((t, i) => (
-            <div key={t.n} className={`test-card fade-up d${i + 1}`}>
-              <span className="quote-mark">“</span>
-              <span className="stars">★★★★★</span>
-              <blockquote>{t.q}</blockquote>
-              <div className="author">
-                <div className="avatar">{t.a}</div>
-                <div>
-                  <div className="name">{t.n}</div>
-                  <div className="role">{t.r}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Process() {
   const steps = [
-    { t: "Discover", d: "We listen first — to your strategy, your culture, and the role's true brief." },
-    { t: "Define", d: "Calibrated success profile, assessment framework and search strategy agreed upfront." },
-    { t: "Deliver", d: "Diverse, vetted shortlist with structured interviews and independent assessment." },
-    { t: "Develop", d: "Onboarding plan, integration coaching and twelve-month performance partnership." },
+    {
+      t: "Right Understanding",
+      d: "We understand your business, culture, goals, and hiring expectations before we begin the search.",
+    },
+    {
+      t: "Right Search",
+      d: "We strategically hunt for talent that matches not just the role, but your company vision.",
+    },
+    {
+      t: "Right Screening",
+      d: "Every candidate is carefully evaluated for skills, communication, attitude, and culture fit.",
+    },
+    {
+      t: "Right Shortlisting",
+      d: "Only the most relevant and high-potential profiles reach your desk — no unnecessary clutter.",
+    },
+    {
+      t: "Right Coordination",
+      d: "From interviews to follow-ups, we ensure a smooth, professional, and seamless hiring experience.",
+    },
+    {
+      t: "Right Closure",
+      d: "We assist until the candidate successfully joins, ensuring the process ends with the right hire.",
+    },
   ];
   return (
     <section id="process" className="process">
       <div className="container-x">
         <div className="section-head fade-up">
           <span className="section-label">Our process</span>
-          <h2 className="section-title">Four steps. <em>One promise.</em></h2>
-          <p className="section-sub">A clear, repeatable methodology that protects your time and improves the odds of every hire.</p>
+          <h2 className="section-title">Six steps. <em>One promise.</em></h2>
+          <p className="section-sub">
+            From understanding your business to closing the right hire — a clear path at every stage.
+          </p>
         </div>
         <div className="steps">
           {steps.map((s, i) => (
-            <div key={s.t} className={`step fade-up d${i + 1}`}>
-              <div className="circle">0{i + 1}</div>
+            <div key={s.t} className={`step fade-up d${(i % 4) + 1}`}>
+              <div className="circle">{String(i + 1).padStart(2, "0")}</div>
               <h4>{s.t}</h4>
               <p>{s.d}</p>
             </div>
@@ -374,14 +388,14 @@ function Contact() {
               <div className="ico-tile"><Mail size={20} /></div>
               <div>
                 <h5>Email</h5>
-                <p>hello@rightkindpeople.com</p>
+                <p>info@rightkind.co</p>
               </div>
             </div>
             <div className="contact-row">
               <div className="ico-tile"><Phone size={20} /></div>
               <div>
                 <h5>Phone</h5>
-                <p>+44 (0)20 4525 1180</p>
+                <p>9289992464</p>
               </div>
             </div>
             <div className="contact-row">
@@ -414,10 +428,12 @@ function Contact() {
               <label>How can we help?</label>
               <select defaultValue="">
                 <option value="" disabled>Select a service…</option>
-                <option>Executive Search</option>
-                <option>Talent Acquisition</option>
-                <option>People Advisory</option>
-                <option>HR Consultancy</option>
+                <option>Recruitment & Talent Acquisition</option>
+                <option>HR Consulting & Strategic Hiring</option>
+                <option>Leadership & Mid-Level Hiring</option>
+                <option>Workforce & Team Building Support</option>
+                <option>Employer Branding Assistance</option>
+                <option>Customized HR Solutions</option>
               </select>
             </div>
             <div className="field"><label>Tell us a little more</label><textarea placeholder="Role, timeline, anything we should know…" /></div>
@@ -452,10 +468,12 @@ function Footer() {
           <div>
             <h5>Services</h5>
             <ul>
-              <li><a href="#services">Executive Search</a></li>
-              <li><a href="#services">Talent Acquisition</a></li>
-              <li><a href="#services">People Advisory</a></li>
-              <li><a href="#services">HR Consultancy</a></li>
+              <li><a href="#services">Recruitment & Talent Acquisition</a></li>
+              <li><a href="#services">HR Consulting & Strategic Hiring</a></li>
+              <li><a href="#services">Leadership & Mid-Level Hiring</a></li>
+              <li><a href="#services">Workforce & Team Building Support</a></li>
+              <li><a href="#services">Employer Branding Assistance</a></li>
+              <li><a href="#services">Customized HR Solutions</a></li>
             </ul>
           </div>
           <div>
@@ -463,7 +481,6 @@ function Footer() {
             <ul>
               <li><a href="#about">About us</a></li>
               <li><a href="#process">Our process</a></li>
-              <li><a href="#testimonials">Case studies</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
@@ -512,10 +529,10 @@ function Home() {
         <Hero />
         <Stats />
         <About />
+        <Differentiators />
         <Services />
         <Why />
         <Industries />
-        <Testimonials />
         <Process />
         <Contact />
       </main>
