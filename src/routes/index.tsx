@@ -94,7 +94,7 @@ function Hero() {
           <h1>The right people make the difference.</h1>
           <p className="lead">
             Success begins with the right team behind your business.
-            Right Kind delivers recruitment solutions that bring the right people to the right roles.
+            RightKind delivers recruitment solutions that bring the right people to the right roles.
           </p>
           <div className="hero-ctas">
             <a href="#contact" className="btn btn-primary">Book a Consultation <ArrowRight size={16} /></a>
@@ -107,12 +107,12 @@ function Hero() {
             <div className="hero-accent-line" />
           </div>
           <div className="stat-card tl">
-            <span className="num">98%</span>
+            <span className="num">High</span>
             <span className="lbl">Placement success rate</span>
           </div>
           <div className="stat-card br">
-            <span className="num">14+</span>
-            <span className="lbl">Years building teams</span>
+            <span className="num">10+</span>
+            <span className="lbl">Years of experience</span>
           </div>
         </div>
       </div>
@@ -379,7 +379,7 @@ function Why() {
 function Industries() {
   const tags = [
     "Financial Services", "Technology & SaaS", "Healthcare & Life Sciences", "Professional Services",
-    "Energy & Infrastructure", "Consumer & Retail", "Public & Non-Profit", "Manufacturing", "Education", "Legal",
+    "Energy & Infrastructure", "Consumer & Retail", "Public & Non-Profit", "Manufacturing", "Education",
   ];
   return (
     <section id="industries" className="industries">
@@ -475,7 +475,7 @@ function Contact() {
               <div className="ico-tile"><Phone size={20} /></div>
               <div>
                 <h5>Phone</h5>
-                <p>9289992464</p>
+                <p>91+ 928 999 2464</p>
               </div>
             </div>
             <div className="contact-row">
