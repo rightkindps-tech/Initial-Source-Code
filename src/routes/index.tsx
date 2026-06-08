@@ -8,6 +8,7 @@ import {
 import heroImg from "@/assets/hero-team.jpg";
 import about1 from "@/assets/about-1.jpg";
 import about2 from "@/assets/about-2.jpg";
+import logoImg from "@/assets/rkps-logo.png";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -54,9 +55,8 @@ function Header() {
     <>
       <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
         <div className="container-x inner">
-          <a href="#home" className="brand">
-            RightKind<span className="dot" />
-            <small>People Solutions</small>
+          <a href="#home" className="brand" aria-label="RightKind People Solutions">
+            <img src={logoImg} alt="RightKind People Solutions" className="brand-logo" width={1774} height={887} />
           </a>
           <nav className="nav-links">
             {nav.map((n, i) => (
@@ -533,9 +533,8 @@ function Footer() {
       <div className="container-x">
         <div className="footer-grid">
           <div className="footer-brand">
-            <a href="#home" className="brand">
-              RightKind<span className="dot" />
-              <small className="small-tag">People Solutions</small>
+            <a href="#home" className="brand" aria-label="RightKind People Solutions">
+              <img src={logoImg} alt="RightKind People Solutions" className="brand-logo brand-logo-footer" width={1774} height={887} />
             </a>
             <p>HR consultancy, talent acquisition, executive search and people advisory — built on calm authority and lasting partnership.</p>
             <div className="socials">
