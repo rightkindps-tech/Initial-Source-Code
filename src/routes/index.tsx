@@ -34,6 +34,21 @@ function useScrollReveal() {
   }, []);
 }
 
+function BrandLogo({ footer = false }: { footer?: boolean }) {
+  return (
+    <span className="brand-logo-wrap">
+      <img
+        src={logoImg}
+        alt="RightKind People Solutions"
+        className={`brand-logo${footer ? " brand-logo-footer" : ""}`}
+        width={1774}
+        height={887}
+      />
+      <span className="brand-mark" aria-hidden="true">™</span>
+    </span>
+  );
+}
+
 function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -55,8 +70,8 @@ function Header() {
     <>
       <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
         <div className="container-x inner">
-          <a href="#home" className="brand" aria-label="RightKind People Solutions">
-            <img src={logoImg} alt="RightKind People Solutions" className="brand-logo" width={1774} height={887} />
+          <a href="#home" className="brand" aria-label="RightKind People Solutions™">
+            <BrandLogo />
           </a>
           <nav className="nav-links">
             {nav.map((n, i) => (
@@ -475,7 +490,7 @@ function Contact() {
               <div className="ico-tile"><Phone size={20} /></div>
               <div>
                 <h5>Phone</h5>
-                <p>91+ 928 999 2464</p>
+                <p>+91 - 92899 92464</p>
               </div>
             </div>
             <div className="contact-row">
@@ -533,8 +548,8 @@ function Footer() {
       <div className="container-x">
         <div className="footer-grid">
           <div className="footer-brand">
-            <a href="#home" className="brand" aria-label="RightKind People Solutions">
-              <img src={logoImg} alt="RightKind People Solutions" className="brand-logo brand-logo-footer" width={1774} height={887} />
+            <a href="#home" className="brand" aria-label="RightKind People Solutions™">
+              <BrandLogo footer />
             </a>
             <p>HR consultancy, talent acquisition, executive search and people advisory — built on calm authority and lasting partnership.</p>
             <div className="socials">
