@@ -60,7 +60,8 @@ function Header() {
   }, []);
   const nav = [
     { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
+    { href: "/about", label: "About" },
+    { href: "/services/executive-search", label: "Executive Search" },
     { href: "#services", label: "Services" },
     { href: "#industries", label: "Industries" },
     { href: "#process", label: "Process" },
@@ -197,15 +198,11 @@ function About() {
               understanding businesses deeply — their vision, work culture, growth plans, and expectations —
               so we can connect them with talent that truly fits.
             </p>
-            <p>
-              At RightKind People Solutions, we believe recruitment is not about filling vacancies.
-              It&apos;s about building futures, strengthening companies, and creating teams that actually perform.
-            </p>
-            <p>
-              Whether you are a fast-growing startup, an ambitious brand, or an established organization, we
-              bring energy, commitment, professionalism, and people expertise that help you hire with
-              confidence.
-            </p>
+            <div style={{ marginTop: "24px" }}>
+              <a href="/about" className="btn btn-primary">
+                Read Our Full Story <ArrowRight size={16} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -294,12 +291,12 @@ function Differentiators() {
 
 function Services() {
   const svc = [
-    { icon: <Search size={24} />, t: "Recruitment & Talent Acquisition" },
-    { icon: <Briefcase size={24} />, t: "HR Consulting & Strategic Hiring" },
-    { icon: <Users size={24} />, t: "Leadership & Mid-Level Hiring" },
-    { icon: <Compass size={24} />, t: "Workforce & Team Building Support" },
-    { icon: <Sparkles size={24} />, t: "Employer Branding Assistance" },
-    { icon: <Check size={24} />, t: "Customized HR Solutions" },
+    { icon: <Search size={24} />, t: "Recruitment & Talent Acquisition", href: "/services/executive-search" },
+    { icon: <Briefcase size={24} />, t: "HR Consulting & Strategic Hiring", href: "/services/executive-search" },
+    { icon: <Users size={24} />, t: "Leadership & Mid-Level Hiring", href: "/services/executive-search" },
+    { icon: <Compass size={24} />, t: "Workforce & Team Building Support", href: "#contact" },
+    { icon: <Sparkles size={24} />, t: "Employer Branding Assistance", href: "#contact" },
+    { icon: <Check size={24} />, t: "Customized HR Solutions", href: "#contact" },
   ];
   return (
     <section id="services" style={{ background: "#fff" }}>
@@ -309,10 +306,15 @@ function Services() {
         </div>
         <div className="services-grid">
           {svc.map((s, i) => (
-            <div key={s.t} className={`svc-card fade-up d${(i % 4) + 1}`}>
+            <a
+              key={s.t}
+              href={s.href}
+              className={`svc-card fade-up d${(i % 4) + 1}`}
+              style={{ textDecoration: "none", color: "inherit", display: "block" }}
+            >
               <div className="svc-icon">{s.icon}</div>
               <h3>{s.t}</h3>
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -562,9 +564,9 @@ function Footer() {
           <div>
             <h5>Services</h5>
             <ul>
-              <li><a href="#services">Recruitment & Talent Acquisition</a></li>
-              <li><a href="#services">HR Consulting & Strategic Hiring</a></li>
-              <li><a href="#services">Leadership & Mid-Level Hiring</a></li>
+              <li><a href="/services/executive-search">Recruitment & Talent Acquisition</a></li>
+              <li><a href="/services/executive-search">HR Consulting & Strategic Hiring</a></li>
+              <li><a href="/services/executive-search">Leadership & Mid-Level Hiring</a></li>
               <li><a href="#services">Workforce & Team Building Support</a></li>
               <li><a href="#services">Employer Branding Assistance</a></li>
               <li><a href="#services">Customized HR Solutions</a></li>
@@ -573,7 +575,7 @@ function Footer() {
           <div>
             <h5>Company</h5>
             <ul>
-              <li><a href="#about">About us</a></li>
+              <li><a href="/about">About us</a></li>
               <li><a href="#process">Our process</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
