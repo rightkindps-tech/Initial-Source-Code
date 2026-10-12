@@ -123,8 +123,8 @@ function Header() {
             </div>
 
             <a href="#industries" className="nav-link">Industries</a>
-            <a href="#process" className="nav-link">Process</a>
-            <a href="#contact" className="nav-link">Contact</a>
+            <a href="/insights" className="nav-link">Insights</a>
+            <a href="#contact" className="nav-link">Contact</a>  
           </nav>
           <a href="#contact" className="btn btn-primary header-cta">
             Book a Consultation <ArrowRight size={16} />
@@ -142,7 +142,7 @@ function Header() {
           <a href="/services/talent-acquisition" onClick={() => setOpen(false)}>— Talent Acquisition</a>
           <a href="#services" onClick={() => setOpen(false)}>All Services</a>
           <a href="#industries" onClick={() => setOpen(false)}>Industries</a>
-          <a href="#process" onClick={() => setOpen(false)}>Process</a>
+          <a href="/insights" onClick={() => setOpen(false)}>Insights</a>
           <a href="#contact" onClick={() => setOpen(false)}>Contact</a>
           <a href="#contact" onClick={() => setOpen(false)} style={{ color: "var(--teal)", fontWeight: 600 }}>
             Book a Consultation →
