@@ -3,19 +3,10 @@ import { useEffect, useState } from "react";
 import {
   ArrowRight,
   Briefcase,
-  Check,
-  Compass,
-  Handshake,
   Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Search,
   Shield,
-  Sparkles,
   Target,
   Twitter,
-  Users,
   X,
 } from "lucide-react";
 import heroImg from "@/assets/hero-team.jpg";
@@ -26,8 +17,7 @@ export const Route = createFileRoute("/services/executive-search")({
   head: () => ({
     meta: [
       {
-        title:
-          "Executive Search & Leadership Hiring | RightKind People Solutions",
+        title: "Executive Search & Leadership Hiring | RightKind People Solutions",
       },
       {
         name: "description",
@@ -36,8 +26,7 @@ export const Route = createFileRoute("/services/executive-search")({
       },
       {
         property: "og:title",
-        content:
-          "Executive Search & Leadership Hiring | RightKind People Solutions",
+        content: "Executive Search & Leadership Hiring | RightKind People Solutions",
       },
       {
         property: "og:description",
@@ -71,9 +60,7 @@ function BrandLogo({ footer = false }: { footer?: boolean }) {
         width={1774}
         height={887}
       />
-      <span className="brand-mark" aria-hidden="true">
-        ™
-      </span>
+      <span className="brand-mark" aria-hidden="true">™</span>
     </span>
   );
 }
@@ -81,6 +68,7 @@ function BrandLogo({ footer = false }: { footer?: boolean }) {
 function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -88,15 +76,6 @@ function Header() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const nav = [
-    { href: "/#home", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/#services", label: "Services" },
-    { href: "/#industries", label: "Industries" },
-    { href: "/#process", label: "Process" },
-    { href: "/#contact", label: "Contact" },
-  ];
 
   return (
     <>
@@ -106,48 +85,82 @@ function Header() {
             <BrandLogo />
           </a>
           <nav className="nav-links">
-            {nav.map((n) => (
+            <a href="/#home" className="nav-link">Home</a>
+            <a href="/about" className="nav-link">About</a>
+
+            <div
+              style={{ position: "relative", display: "inline-block" }}
+              onMouseEnter={() => setServicesOpen(true)}
+              onMouseLeave={() => setServicesOpen(false)}
+            >
               <a
-                key={n.label}
-                href={n.href}
-                className={`nav-link ${n.label === "Services" ? "active" : ""}`}
+                href="/#services"
+                className="nav-link active"
+                style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}
               >
-                {n.label}
+                Services <span style={{ fontSize: "0.75em" }}>▾</span>
               </a>
-            ))}
+              {servicesOpen && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "100%",
+                    left: 0,
+                    background: "#ffffff",
+                    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.12)",
+                    borderRadius: "8px",
+                    padding: "8px 0",
+                    minWidth: "230px",
+                    border: "1px solid #e2e8f0",
+                    zIndex: 100,
+                  }}
+                >
+                  <a
+                    href="/services/executive-search"
+                    style={{ display: "block", padding: "10px 16px", color: "var(--teal, #0d9488)", fontSize: "0.9rem", textDecoration: "none", fontWeight: 600 }}
+                  >
+                    Executive Search
+                  </a>
+                  <a
+                    href="/services/talent-acquisition"
+                    style={{ display: "block", padding: "10px 16px", color: "#152447", fontSize: "0.9rem", textDecoration: "none", fontWeight: 500 }}
+                  >
+                    Talent Acquisition
+                  </a>
+                  <div style={{ borderTop: "1px solid #f1f5f9", margin: "4px 0" }} />
+                  <a
+                    href="/#services"
+                    style={{ display: "block", padding: "8px 16px", color: "var(--teal, #0d9488)", fontSize: "0.85rem", textDecoration: "none", fontWeight: 600 }}
+                  >
+                    All Services →
+                  </a>
+                </div>
+              )}
+            </div>
+
+            <a href="/#industries" className="nav-link">Industries</a>
+            <a href="/#process" className="nav-link">Process</a>
+            <a href="/#contact" className="nav-link">Contact</a>
           </nav>
           <a href="/#contact" className="btn btn-primary header-cta">
             Book a Consultation <ArrowRight size={16} />
           </a>
-          <button
-            className="hamburger"
-            aria-label="Menu"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? (
-              <X size={22} color="#152447" />
-            ) : (
-              <>
-                <span />
-                <span />
-                <span />
-              </>
-            )}
+          <button className="hamburger" aria-label="Menu" onClick={() => setOpen(!open)}>
+            {open ? <X size={22} color="#152447" /> : <><span /><span /><span /></>}
           </button>
         </div>
       </header>
       {open && (
         <div className="mobile-nav">
-          {nav.map((n) => (
-            <a key={n.label} href={n.href} onClick={() => setOpen(false)}>
-              {n.label}
-            </a>
-          ))}
-          <a
-            href="/#contact"
-            onClick={() => setOpen(false)}
-            style={{ color: "var(--teal)", fontWeight: 600 }}
-          >
+          <a href="/#home" onClick={() => setOpen(false)}>Home</a>
+          <a href="/about" onClick={() => setOpen(false)}>About</a>
+          <a href="/services/executive-search" onClick={() => setOpen(false)}>— Executive Search</a>
+          <a href="/services/talent-acquisition" onClick={() => setOpen(false)}>— Talent Acquisition</a>
+          <a href="/#services" onClick={() => setOpen(false)}>All Services</a>
+          <a href="/#industries" onClick={() => setOpen(false)}>Industries</a>
+          <a href="/#process" onClick={() => setOpen(false)}>Process</a>
+          <a href="/#contact" onClick={() => setOpen(false)}>Contact</a>
+          <a href="/#contact" onClick={() => setOpen(false)} style={{ color: "var(--teal)", fontWeight: 600 }}>
             Book a Consultation →
           </a>
         </div>
@@ -170,19 +183,15 @@ function Footer() {
               advisory — built on calm authority and lasting partnership.
             </p>
             <div className="socials">
-              <a href="#" aria-label="LinkedIn">
-                <Linkedin size={16} />
-              </a>
-              <a href="#" aria-label="Twitter">
-                <Twitter size={16} />
-              </a>
+              <a href="#" aria-label="LinkedIn"><Linkedin size={16} /></a>
+              <a href="#" aria-label="Twitter"><Twitter size={16} /></a>
             </div>
           </div>
           <div>
             <h5>Services</h5>
             <ul>
               <li><a href="/services/executive-search">Executive Search</a></li>
-              <li><a href="/#services">Recruitment & Talent Acquisition</a></li>
+              <li><a href="/services/talent-acquisition">Talent Acquisition</a></li>
               <li><a href="/#services">HR Consulting & Advisory</a></li>
               <li><a href="/#services">Workforce Support</a></li>
             </ul>
@@ -238,7 +247,6 @@ function ExecutiveSearchPage() {
       <Header />
 
       <main style={{ paddingTop: "100px" }}>
-        {/* Hero Section */}
         <section className="hero" style={{ minHeight: "auto", padding: "80px 0" }}>
           <div className="container-x hero-grid">
             <div className="fade-up visible">
@@ -261,18 +269,12 @@ function ExecutiveSearchPage() {
             </div>
             <div className="hero-visual fade-up d2 visible">
               <div className="hero-frame">
-                <img
-                  src={heroImg}
-                  alt="Executive consulting team"
-                  width={1280}
-                  height={960}
-                />
+                <img src={heroImg} alt="Executive consulting team" width={1280} height={960} />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Practice Areas */}
         <section style={{ padding: "80px 0", background: "#ffffff" }}>
           <div className="container-x">
             <div className="section-head fade-up">
@@ -295,7 +297,6 @@ function ExecutiveSearchPage() {
           </div>
         </section>
 
-        {/* Search Methodology */}
         <section style={{ padding: "80px 0", background: "#f8fafc" }}>
           <div className="container-x">
             <div className="section-head fade-up">
@@ -319,7 +320,6 @@ function ExecutiveSearchPage() {
           </div>
         </section>
 
-        {/* Contact CTA */}
         <section style={{ padding: "80px 0", textAlign: "center", background: "#ffffff" }}>
           <div className="container-x fade-up">
             <h2 className="section-title" style={{ marginBottom: "16px" }}>
