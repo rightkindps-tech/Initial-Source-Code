@@ -293,3 +293,399 @@ function Differentiators() {
                 type="button"
                 role="tab"
                 aria-selected={active === i}
+                className={`diff-nav-pill ${active === i ? "active" : ""}`}
+                onClick={() => setActive(i)}
+              >
+                <span className="diff-nav-ico"><Icon size={16} /></span>
+                {item.tag}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="different-grid">
+          {items.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <article
+                key={item.text}
+                className={`diff-card${active === i ? " diff-card-active" : ""}`}
+                onClick={() => setActive(i)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActive(i);
+                  }
+                }}
+                tabIndex={0}
+              >
+                <div className="diff-card-top">
+                  <span className="diff-icon"><Icon size={22} /></span>
+                  <span className="diff-num">{String(i + 1).padStart(2, "0")}</span>
+                </div>
+                <span className="diff-tag">{item.tag}</span>
+                <p>{item.text}</p>
+                <span className="diff-accent" aria-hidden="true" />
+                <span className="diff-glow" aria-hidden="true" />
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="diff-footer fade-up d2">
+          <Sparkles size={18} aria-hidden="true" />
+          <p>Five principles. One standard — the right hire, every time.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  const svc = [
+    { icon: <Search size={24} />, t: "Recruitment & Talent Acquisition", href: "/services/talent-acquisition" },
+    { icon: <Briefcase size={24} />, t: "HR Consulting & Strategic Hiring", href: "/services/executive-search" },
+    { icon: <Users size={24} />, t: "Leadership & Mid-Level Hiring", href: "/services/executive-search" },
+    { icon: <Compass size={24} />, t: "Workforce & Team Building Support", href: "/services/talent-acquisition" },
+    { icon: <Sparkles size={24} />, t: "Employer Branding Assistance", href: "#contact" },
+    { icon: <Check size={24} />, t: "Customized HR Solutions", href: "#contact" },
+  ];
+  return (
+    <section id="services" style={{ background: "#fff" }}>
+      <div className="container-x">
+        <div className="section-head fade-up">
+          <span className="section-label">What We do</span>
+        </div>
+        <div className="services-grid">
+          {svc.map((s, i) => (
+            <a
+              key={s.t}
+              href={s.href}
+              className={`svc-card fade-up d${(i % 4) + 1}`}
+              style={{ textDecoration: "none", color: "inherit", display: "block" }}
+            >
+              <div className="svc-icon">{s.icon}</div>
+              <h3>{s.t}</h3>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Why() {
+  const commitments = [
+    { icon: <UserCheck size={22} />, label: "Every profile we share" },
+    { icon: <MessageCircle size={22} />, label: "Every conversation we have" },
+    { icon: <Briefcase size={22} />, label: "Every role we work on" },
+  ];
+  const values = [
+    { icon: <TrendingUp size={18} />, label: "Effort" },
+    { icon: <Target size={18} />, label: "Understanding" },
+    { icon: <Shield size={18} />, label: "Responsibility" },
+  ];
+  return (
+    <section className="why">
+      <div className="why-glow why-glow-tr" aria-hidden="true" />
+      <div className="why-glow why-glow-bl" aria-hidden="true" />
+      <div className="container-x why-layout">
+        <div className="why-head fade-up">
+          <span className="section-label">Why RightKind</span>
+          <h2 className="section-title">
+            Hiring is an <em>investment</em>, not an expense.
+          </h2>
+          <p className="why-intro">
+            Because we understand that hiring is an investment, not an expense.
+          </p>
+        </div>
+
+        <div className="why-contrast fade-up d1" aria-hidden="true">
+          <span className="why-chip why-chip-dim">Expense</span>
+          <span className="why-contrast-arrow">→</span>
+          <span className="why-chip why-chip-active">Investment</span>
+        </div>
+
+        <div className="why-commitments">
+          {commitments.map((item, i) => (
+            <article key={item.label} className={`why-commit-card fade-up d${(i % 4) + 1}`}>
+              <span className="why-commit-icon">{item.icon}</span>
+              <p>{item.label}</p>
+              <span className="why-commit-accent" aria-hidden="true" />
+            </article>
+          ))}
+        </div>
+
+        <div className="why-values fade-up d2">
+          <span className="why-values-label">Backed by</span>
+          <div className="why-values-row">
+            {values.map((v, i) => (
+              <span key={v.label} className="why-value-pill">
+                <span className="why-value-ico">{v.icon}</span>
+                {v.label}
+                {i < values.length - 1 && <span className="why-value-dot" aria-hidden="true" />}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="why-partner fade-up d3">
+          <div className="why-partner-icon" aria-hidden="true">
+            <Handshake size={28} />
+          </div>
+          <div>
+            <p className="why-partner-lead">More than a recruitment agency</p>
+            <p className="why-partner-text">
+              We aim to become a dependable hiring partner that businesses can grow with.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Industries() {
+  const tags = [
+    "Financial Services", "Technology & SaaS", "Healthcare & Life Sciences", "Professional Services",
+    "Energy & Infrastructure", "Consumer & Retail", "Public & Non-Profit", "Manufacturing", "Education",
+  ];
+  return (
+    <section id="industries" className="industries">
+      <div className="container-x">
+        <div className="section-head fade-up">
+          <span className="section-label">Industries</span>
+          <h2 className="section-title">Sector depth where it <em>matters</em>.</h2>
+          <p className="section-sub">A network of senior consultants embedded across the industries where we place leaders.</p>
+        </div>
+        <div className="tags fade-up d1">
+          {tags.map((t) => <span className="tag" key={t}>{t}</span>)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Process() {
+  const steps = [
+    {
+      t: "Right Understanding",
+      d: "We understand your business, culture, goals, and hiring expectations before we begin the search.",
+    },
+    {
+      t: "Right Search",
+      d: "We strategically hunt for talent that matches not just the role, but your company vision.",
+    },
+    {
+      t: "Right Screening",
+      d: "Every candidate is carefully evaluated for skills, communication, attitude, and culture fit.",
+    },
+    {
+      t: "Right Shortlisting",
+      d: "Only the most relevant and high-potential profiles reach your desk — no unnecessary clutter.",
+    },
+    {
+      t: "Right Coordination",
+      d: "From interviews to follow-ups, we ensure a smooth, professional, and seamless hiring experience.",
+    },
+    {
+      t: "Right Closure",
+      d: "We assist until the candidate successfully joins, ensuring the process ends with the right hire.",
+    },
+  ];
+  return (
+    <section id="process" className="process">
+      <div className="process-glow process-glow-tr" aria-hidden="true" />
+      <div className="process-glow process-glow-bl" aria-hidden="true" />
+      <div className="container-x">
+        <div className="section-head fade-up">
+          <span className="section-label">Our process</span>
+          <h2 className="section-title">Six steps. <em>One promise.</em></h2>
+          <p className="section-sub">
+            From understanding your business to closing the right hire — a clear path at every stage.
+          </p>
+        </div>
+        <div className="process-timeline-wrap fade-up">
+          <ol className="process-timeline">
+            {steps.map((s, i) => (
+              <li key={s.t} className={`timeline-step fade-up d${(i % 4) + 1}`}>
+                <span className="timeline-node">{String(i + 1).padStart(2, "0")}</span>
+                <article className="timeline-card">
+                  <h4>{s.t}</h4>
+                  <p>{s.d}</p>
+                </article>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section id="contact" style={{ background: "#fff" }}>
+      <div className="container-x">
+        <div className="section-head fade-up" style={{ textAlign: "left", marginBottom: 48 }}>
+          <span className="section-label">Get in touch</span>
+          <h2 className="section-title" style={{ maxWidth: 720 }}>Let&apos;s talk about the <em>right kind</em> of hire.</h2>
+        </div>
+        <div className="contact-grid">
+          <div className="fade-up">
+            <div className="contact-row">
+              <div className="ico-tile"><Mail size={20} /></div>
+              <div>
+                <h5>Email</h5>
+                <p>info@rightkind.co</p>
+              </div>
+            </div>
+            <div className="contact-row">
+              <div className="ico-tile"><Phone size={20} /></div>
+              <div>
+                <h5>Phone</h5>
+                <p>+91 - 92899 92464</p>
+              </div>
+            </div>
+            <div className="contact-row">
+              <div className="ico-tile"><MapPin size={20} /></div>
+              <div>
+                <h5>Office</h5>
+                <p>Rohini, Delhi, India - 110085</p>
+              </div>
+            </div>
+            <div className="contact-row">
+              <div className="ico-tile"><Sparkles size={20} /></div>
+              <div>
+                <h5>Response time</h5>
+                <p>We reply to every enquiry within one working day.</p>
+              </div>
+            </div>
+          </div>
+          <form
+            className="form-panel fade-up d1"
+            onSubmit={(e) => { e.preventDefault(); alert("Thank you — a partner will be in touch within one working day."); }}
+          >
+            <h3 className="serif">Request a confidential conversation</h3>
+            <div className="form-row">
+              <div className="field"><label>First name</label><input required placeholder="Helena" /></div>
+              <div className="field"><label>Last name</label><input required placeholder="Marsh" /></div>
+            </div>
+            <div className="field"><label>Work email</label><input required type="email" placeholder="helena@company.com" /></div>
+            <div className="field"><label>Company</label><input placeholder="Company name" /></div>
+            <div className="field">
+              <label>How can we help?</label>
+              <select defaultValue="">
+                <option value="" disabled>Select a service…</option>
+                <option>Recruitment & Talent Acquisition</option>
+                <option>HR Consulting & Strategic Hiring</option>
+                <option>Leadership & Mid-Level Hiring</option>
+                <option>Workforce & Team Building Support</option>
+                <option>Employer Branding Assistance</option>
+                <option>Customized HR Solutions</option>
+              </select>
+            </div>
+            <div className="field"><label>Tell us a little more</label><textarea placeholder="Role, timeline, anything we should know…" /></div>
+            <button type="submit" className="btn btn-primary" style={{ width: "100%", justifyContent: "center" }}>
+              Send enquiry <ArrowRight size={16} />
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="container-x">
+        <div className="footer-grid">
+          <div className="footer-brand">
+            <a href="#home" className="brand" aria-label="RightKind People Solutions™">
+              <BrandLogo footer />
+            </a>
+            <p>HR consultancy, talent acquisition, executive search and people advisory — built on calm authority and lasting partnership.</p>
+            <div className="socials">
+              <a href="#" aria-label="LinkedIn"><Linkedin size={16} /></a>
+              <a href="#" aria-label="Twitter"><Twitter size={16} /></a>
+              <a href="#" aria-label="Facebook"><Facebook size={16} /></a>
+              <a href="#" aria-label="Instagram"><Instagram size={16} /></a>
+            </div>
+          </div>
+          <div>
+            <h5>Services</h5>
+            <ul>
+              <li><a href="/services/talent-acquisition">Recruitment & Talent Acquisition</a></li>
+              <li><a href="/services/executive-search">HR Consulting & Strategic Hiring</a></li>
+              <li><a href="/services/executive-search">Leadership & Mid-Level Hiring</a></li>
+              <li><a href="/services/talent-acquisition">Workforce & Team Building Support</a></li>
+              <li><a href="#services">Employer Branding Assistance</a></li>
+              <li><a href="#services">Customized HR Solutions</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Company</h5>
+            <ul>
+              <li><a href="/about">About us</a></li>
+              <li><a href="#process">Our process</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Resources</h5>
+            <ul>
+              <li><a href="#">Insights</a></li>
+              <li><a href="#">Compensation guide</a></li>
+              <li><a href="#">Privacy policy</a></li>
+              <li><a href="#">Terms of service</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          © {new Date().getFullYear()} RightKind People Solutions. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function ToTop() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShow(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <button
+      className={`to-top ${show ? "visible" : ""}`}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Back to top"
+    >
+      <ChevronUp size={20} />
+    </button>
+  );
+}
+
+function Home() {
+  useScrollReveal();
+  return (
+    <div>
+      <Header />
+      <main>
+        <Hero />
+        <Stats />
+        <About />
+        <Differentiators />
+        <Services />
+        <Why />
+        <Industries />
+        <Process />
+        <Contact />
+      </main>
+      <Footer />
+      <ToTop />
+    </div>
+  );
+}
