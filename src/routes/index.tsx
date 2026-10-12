@@ -530,15 +530,24 @@ function Contact() {
     e.preventDefault();
     setStatus("submitting");
     const form = e.currentTarget;
-    const formData = new FormData(form);
+    const rawData = new FormData(form);
 
-    formData.append("access_key", "87f5ddde-ae9d-4668-b001-f029de478019");
-    formData.append("subject", "New Consultation Enquiry — RightKind Website");
+    const countryCode = rawData.get("country_code") || "+91";
+    const mobile = rawData.get("mobile") || "";
+
+    const payload = new FormData();
+    payload.append("access_key", "87f5ddde-ae9d-4668-b001-f029de478019");
+    payload.append("subject", "New Consultation Enquiry — RightKind Website");
+    payload.append("name", String(rawData.get("name") || ""));
+    payload.append("phone", `${countryCode} ${mobile}`);
+    if (rawData.get("email")) {
+      payload.append("email", String(rawData.get("email")));
+    }
 
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
+        body: payload,
       });
       const data = await res.json();
       if (data.success) {
@@ -592,41 +601,58 @@ function Contact() {
           </div>
           <form className="form-panel fade-up d1" onSubmit={handleSubmit}>
             <h3 className="serif">Request a confidential conversation</h3>
-            <div className="form-row">
-              <div className="field"><label>First name</label><input name="first_name" required placeholder="Helena" /></div>
-              <div className="field"><label>Last name</label><input name="last_name" required placeholder="Marsh" /></div>
-            </div>
-            <div className="field"><label>Work email</label><input name="email" required type="email" placeholder="helena@company.com" /></div>
-            <div className="field"><label>Company</label><input name="company" placeholder="Company name" /></div>
+
             <div className="field">
-              <label>How can we help?</label>
-              <select name="service" defaultValue="">
-                <option value="" disabled>Select a service…</option>
-                <option>Recruitment & Talent Acquisition</option>
-                <option>HR Consulting & Strategic Hiring</option>
-                <option>Leadership & Mid-Level Hiring</option>
-                <option>Workforce & Team Building Support</option>
-                <option>Employer Branding Assistance</option>
-                <option>Customized HR Solutions</option>
-              </select>
+              <label>
+                Name <span style={{ color: "#dc2626" }}>*</span>
+              </label>
+              <input name="name" required placeholder="Your full name" />
             </div>
-            <div className="field"><label>Tell us a little more</label><textarea name="message" placeholder="Role, timeline, anything we should know…" /></div>
+
+            <div className="field">
+              <label>
+                Mobile Number <span style={{ color: "#dc2626" }}>*</span>
+              </label>
+              <div style={{ display: "grid", gridTemplateColumns: "125px 1fr", gap: "10px" }}>
+                <select name="country_code" defaultValue="+91" aria-label="Country code">
+                  <option value="+91">🇮🇳 +91</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+971">🇦🇪 +971</option>
+                  <option value="+65">🇸🇬 +65</option>
+                  <option value="+61">🇦🇺 +61</option>
+                  <option value="+49">🇩🇪 +49</option>
+                </select>
+                <input
+                  name="mobile"
+                  type="tel"
+                  required
+                  placeholder="98765 43210"
+                />
+              </div>
+            </div>
+
+            <div className="field">
+              <label>Email</label>
+              <input name="email" type="email" placeholder="you@company.com (optional)" />
+            </div>
+
             <button
               type="submit"
               disabled={status === "submitting"}
               className="btn btn-primary"
-              style={{ width: "100%", justifyContent: "center" }}
+              style={{ width: "100%", justifyContent: "center", marginTop: "8px" }}
             >
               {status === "submitting" ? "Sending…" : "Send enquiry"} <ArrowRight size={16} />
             </button>
             {status === "success" && (
               <p style={{ marginTop: "12px", color: "var(--teal, #0d9488)", fontWeight: 600, fontSize: "0.9rem" }}>
-                Thank you — your enquiry has been sent to our team. We will reply within one working day.
+                Thank you — your details have been shared. We will reach out shortly.
               </p>
             )}
             {status === "error" && (
               <p style={{ marginTop: "12px", color: "#dc2626", fontSize: "0.9rem" }}>
-                Something went wrong. Please email us directly at info@rightkind.co.
+                Something went wrong. Please call or WhatsApp us at +91 92899 92464.
               </p>
             )}
           </form>
