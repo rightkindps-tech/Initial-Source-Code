@@ -23,13 +23,10 @@
       "permanent": true
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/((?!sitemap\\.xml|robots\\.txt|favicon\\.png|assets/).*)",
+      "destination": "/index.html"
     }
   ]
 }
