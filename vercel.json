@@ -22,5 +22,11 @@
       "destination": "https://www.rightkind.co/:path*",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/((?!sitemap\\.xml|robots\\.txt|assets/|favicon\\.ico).*)",
+      "destination": "/index.html"
+    }
   ]
 }
