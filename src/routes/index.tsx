@@ -632,13 +632,14 @@ function Footer() {
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
-          <div>
-            <h5>Resources</h5>
+         <div>
+            <h5>Key Locations</h5>
             <ul>
-              <li><a href="#">Insights</a></li>
-              <li><a href="#">Compensation guide</a></li>
-              <li><a href="#">Privacy policy</a></li>
-              <li><a href="#">Terms of service</a></li>
+              <li><a href="/locations/recruitment-agency-in-gurugram">Gurugram</a></li>
+              <li><a href="/locations/recruitment-agency-in-delhi">New Delhi</a></li>
+              <li><a href="/locations/recruitment-agency-in-noida">Noida</a></li>
+              <li><a href="/locations/recruitment-agency-in-mumbai">Mumbai</a></li>
+              <li><a href="/locations/recruitment-agency-in-bengaluru">Bengaluru</a></li>
             </ul>
           </div>
         </div>
