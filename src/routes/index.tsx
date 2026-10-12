@@ -524,6 +524,34 @@ function Process() {
 }
 
 function Contact() {
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("submitting");
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    formData.append("access_key", "87f5ddde-ae9d-4668-b001-f029de478019");
+    formData.append("subject", "New Consultation Enquiry — RightKind Website");
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section id="contact" style={{ background: "#fff" }}>
       <div className="container-x">
@@ -562,20 +590,17 @@ function Contact() {
               </div>
             </div>
           </div>
-          <form
-            className="form-panel fade-up d1"
-            onSubmit={(e) => { e.preventDefault(); alert("Thank you — a partner will be in touch within one working day."); }}
-          >
+          <form className="form-panel fade-up d1" onSubmit={handleSubmit}>
             <h3 className="serif">Request a confidential conversation</h3>
             <div className="form-row">
-              <div className="field"><label>First name</label><input required placeholder="Helena" /></div>
-              <div className="field"><label>Last name</label><input required placeholder="Marsh" /></div>
+              <div className="field"><label>First name</label><input name="first_name" required placeholder="Helena" /></div>
+              <div className="field"><label>Last name</label><input name="last_name" required placeholder="Marsh" /></div>
             </div>
-            <div className="field"><label>Work email</label><input required type="email" placeholder="helena@company.com" /></div>
-            <div className="field"><label>Company</label><input placeholder="Company name" /></div>
+            <div className="field"><label>Work email</label><input name="email" required type="email" placeholder="helena@company.com" /></div>
+            <div className="field"><label>Company</label><input name="company" placeholder="Company name" /></div>
             <div className="field">
               <label>How can we help?</label>
-              <select defaultValue="">
+              <select name="service" defaultValue="">
                 <option value="" disabled>Select a service…</option>
                 <option>Recruitment & Talent Acquisition</option>
                 <option>HR Consulting & Strategic Hiring</option>
@@ -585,10 +610,25 @@ function Contact() {
                 <option>Customized HR Solutions</option>
               </select>
             </div>
-            <div className="field"><label>Tell us a little more</label><textarea placeholder="Role, timeline, anything we should know…" /></div>
-            <button type="submit" className="btn btn-primary" style={{ width: "100%", justifyContent: "center" }}>
-              Send enquiry <ArrowRight size={16} />
+            <div className="field"><label>Tell us a little more</label><textarea name="message" placeholder="Role, timeline, anything we should know…" /></div>
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className="btn btn-primary"
+              style={{ width: "100%", justifyContent: "center" }}
+            >
+              {status === "submitting" ? "Sending…" : "Send enquiry"} <ArrowRight size={16} />
             </button>
+            {status === "success" && (
+              <p style={{ marginTop: "12px", color: "var(--teal, #0d9488)", fontWeight: 600, fontSize: "0.9rem" }}>
+                Thank you — your enquiry has been sent to our team. We will reply within one working day.
+              </p>
+            )}
+            {status === "error" && (
+              <p style={{ marginTop: "12px", color: "#dc2626", fontSize: "0.9rem" }}>
+                Something went wrong. Please email us directly at info@rightkind.co.
+              </p>
+            )}
           </form>
         </div>
       </div>
@@ -632,7 +672,7 @@ function Footer() {
               <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
-         <div>
+          <div>
             <h5>Key Locations</h5>
             <ul>
               <li><a href="/locations/recruitment-agency-in-gurugram">Gurugram</a></li>
