@@ -717,6 +717,79 @@ function Footer() {
   );
 }
 
+function StickyContactBar() {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        right: "0",
+        top: "50%",
+        transform: "translateY(-50%)",
+        display: "flex",
+        flexDirection: "column",
+        gap: "6px",
+        zIndex: 90,
+      }}
+    >
+      <a
+        href="tel:+919289992464"
+        aria-label="Call RightKind People Solutions"
+        title="Call +91 92899 92464"
+        style={{
+          width: "46px",
+          height: "46px",
+          background: "#0ea5e9",
+          color: "#ffffff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderTopLeftRadius: "8px",
+          borderBottomLeftRadius: "8px",
+          boxShadow: "0 4px 14px rgba(0, 0, 0, 0.16)",
+          textDecoration: "none",
+          transition: "transform 0.2s ease",
+        }}
+      >
+        <Phone size={20} />
+      </a>
+      <a
+        href="https://wa.me/919289992464?text=Hi%20RightKind%20team%2C%20I%20would%20like%20to%20discuss%20a%20hiring%20requirement."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+        title="Chat on WhatsApp"
+        style={{
+          width: "46px",
+          height: "46px",
+          background: "#25D366",
+          color: "#ffffff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderTopLeftRadius: "8px",
+          borderBottomLeftRadius: "8px",
+          boxShadow: "0 4px 14px rgba(0, 0, 0, 0.16)",
+          textDecoration: "none",
+          transition: "transform 0.2s ease",
+        }}
+      >
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+        </svg>
+      </a>
+    </div>
+  );
+}
+
 function ToTop() {
   const [show, setShow] = useState(false);
   useEffect(() => {
@@ -752,6 +825,7 @@ function Home() {
         <Contact />
       </main>
       <Footer />
+      <StickyContactBar />
       <ToTop />
     </div>
   );
