@@ -9,7 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesExecutiveSearchRouteImport } from './routes/services/executive-search'
+import { Route as ServicesTalentAcquisitionRouteImport } from './routes/services/talent-acquisition'
+
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -17,26 +26,63 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 
+const ServicesExecutiveSearchRoute = ServicesExecutiveSearchRouteImport.update({
+  id: '/services/executive-search',
+  path: '/services/executive-search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+
+const ServicesTalentAcquisitionRoute = ServicesTalentAcquisitionRouteImport.update({
+  id: '/services/talent-acquisition',
+  path: '/services/talent-acquisition',
+  getParentRoute: () => rootRouteImport,
+} as any)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/services/executive-search': typeof ServicesExecutiveSearchRoute
+  '/services/talent-acquisition': typeof ServicesTalentAcquisitionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/services/executive-search': typeof ServicesExecutiveSearchRoute
+  '/services/talent-acquisition': typeof ServicesTalentAcquisitionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/services/executive-search': typeof ServicesExecutiveSearchRoute
+  '/services/talent-acquisition': typeof ServicesTalentAcquisitionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/services/executive-search'
+    | '/services/talent-acquisition'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/services/executive-search'
+    | '/services/talent-acquisition'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/services/executive-search'
+    | '/services/talent-acquisition'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ServicesExecutiveSearchRoute: typeof ServicesExecutiveSearchRoute
+  ServicesTalentAcquisitionRoute: typeof ServicesTalentAcquisitionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +94,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/executive-search': {
+      id: '/services/executive-search'
+      path: '/services/executive-search'
+      fullPath: '/services/executive-search'
+      preLoaderRoute: typeof ServicesExecutiveSearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/talent-acquisition': {
+      id: '/services/talent-acquisition'
+      path: '/services/talent-acquisition'
+      fullPath: '/services/talent-acquisition'
+      preLoaderRoute: typeof ServicesTalentAcquisitionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ServicesExecutiveSearchRoute: ServicesExecutiveSearchRoute,
+  ServicesTalentAcquisitionRoute: ServicesTalentAcquisitionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
