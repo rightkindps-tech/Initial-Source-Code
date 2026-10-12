@@ -92,7 +92,7 @@ function Header() {
     { href: "/about", label: "About" },
     { href: "/#services", label: "Services" },
     { href: "/#industries", label: "Industries" },
-    { href: "/#process", label: "Process" },
+    { href: "/insights", label: "Insights" },
     { href: "/#contact", label: "Contact" },
   ];
 
